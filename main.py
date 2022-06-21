@@ -23,13 +23,20 @@ def decimalToBase(num, base, digits):
     return float(answer)
 
 
+# Returns the index of the decimal point as well as the number formatted without it.
+def getFormattedTuple(numString):
+    if not numString.__contains__("."):
+        numString += ".0"
+    index = numString.index(".")
+    numString = numString.replace(".", "")
+    return numString, index
+
+
 # Converts a number in a given base to decimal.
 def baseToDecimal(num, base):
-    num = str(num)
-    if not num.__contains__("."):
-        num += "."
-    index = num.index(".")
-    num = num.replace(".", "")
+    data = getFormattedTuple(str(num))
+    num = data[0]
+    index = data[1]
     total = 0
     for x in [int(_) for _ in num]:
         index -= 1
@@ -38,9 +45,9 @@ def baseToDecimal(num, base):
 
 
 # Converts a number in a given base to another base.
-def convert(num, startBase, endBase, digits):
+def convert(num, startBase, endBase, digits=100):
     num = baseToDecimal(num, startBase)
     return decimalToBase(num, endBase, digits)
 
 
-print(intComponent(124, 3, ""))
+print(convert(193827, 10, 2))
