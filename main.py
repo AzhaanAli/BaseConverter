@@ -34,10 +34,8 @@ def getFormattedTuple(numString):
 
 # Converts a number in a given base to decimal.
 def baseToDecimal(num, base):
-    data = getFormattedTuple(str(num))
-    num = data[0]
-    index = data[1]
     total = 0
+    num, index = getFormattedTuple(str(num))
     for x in [int(_) for _ in num]:
         index -= 1
         total += x * pow(base, index)
