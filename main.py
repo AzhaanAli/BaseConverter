@@ -8,12 +8,11 @@ def intComponent(num, base, curr):
 
 # Converts the decimal part of a number to another base.
 def decComponent(num, base, curr, digits):
-    if digits == 0 or num == 0:
-        return curr
-    else:
+    if not digits == 0 and not num == 0:
         num *= base
         curr += str(int(num))
         return decComponent(num % 1, base, curr, digits - 1)
+    return curr
 
 
 # Converts a number to a base.
