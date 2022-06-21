@@ -1,10 +1,9 @@
 # Converts an integer to another base.
 def intComponent(num, base, curr):
-    if num < 1:
-        return curr
-    else:
+    if num >= 1:
         curr += str(num % base)
         return intComponent(num // base, base, curr)
+    return curr
 
 
 # Converts the decimal part of a number to another base.
@@ -45,4 +44,4 @@ def convert(num, startBase, endBase, digits):
     return decimalToBase(num, endBase, digits)
 
 
-print(convert(11110001101.101011, 2, 4, 100))
+print(intComponent(124, 3, ""))
