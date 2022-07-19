@@ -1,20 +1,24 @@
+# ------------------------------------------------------- #
+# Conversion methods.
+
 # Converts an integer to another base.
-def int_component(num, base, curr):
+def int_component(num, base, curr=""):
     return curr if num == 0 else int_component(num // base, base, curr + str(num % base))
 
 
 # Converts the decimal part of a number to another base.
-def dec_component(num, base, curr, digits=100):
+def dec_component(num, base, curr="", digits=100):
     if digits == 0 or num == 0:
         return curr if len(curr) > 0 else "0"
-    return dec_component(num * base % 1, base, curr + str(int(num)), digits - 1)
+    x = num * base
+    return dec_component(x % 1, base, curr + str(int(x)), digits - 1)
 
 
 # Converts a number to a base.
 def decimal_to_base(num, base):
     halves = [x for x in str(num).split(".")]
-    answer = int_component(int(halves[0]), base, "")[::-1] + "."
-    answer += dec_component(float("." + halves[1]), base, "")
+    answer = int_component(int(halves[0]), base)[::-1] + "."
+    answer += dec_component(float("." + halves[1]), base)
     return answer
 
 
@@ -43,6 +47,10 @@ def convert(num, start_base, end_base):
     return decimal_to_base(num, end_base)
 
 
+# ------------------------------------------------------- #
+# User-input methods.
+
+
 # Prints a message and returns the users reply.
 def get_user_input(message):
     return input(message + ": ")
@@ -56,6 +64,9 @@ def get_float_input(message):
 def get_integer_input(message):
     return int(get_user_input(message))
 
+
+# ------------------------------------------------------- #
+# Method calls.
 
 # Prompt the user for important information.
 beginning_number = get_float_input("Enter a number to convert")
