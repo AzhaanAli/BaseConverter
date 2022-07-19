@@ -17,18 +17,14 @@ def dec_component(num, base, curr="", digits=100):
 # Converts a number to a base.
 def decimal_to_base(num, base):
     halves = [x for x in str(num).split(".")]
-    answer = int_component(int(halves[0]), base)[::-1] + "."
-    answer += dec_component(float("." + halves[1]), base)
-    return answer
+    return int_component(int(halves[0]), base)[::-1] + "." + dec_component(float("." + halves[1]), base)
 
 
 # Returns the index of the decimal point as well as the number formatted without it.
 def get_formatted_tuple(num_string):
     if not num_string.__contains__("."):
         num_string += ".0"
-    index = num_string.index(".")
-    num_string = num_string.replace(".", "")
-    return num_string, index
+    return num_string.replace(".", ""), num_string.index(".")
 
 
 # Converts a number in a given base to decimal.
@@ -37,7 +33,7 @@ def base_to_decimal(num, base):
     num, index = get_formatted_tuple(str(num))
     for x in [int(_) for _ in num]:
         index -= 1
-        total += x * pow(base, index)
+        total += base ** index * x
     return total
 
 
