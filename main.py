@@ -58,10 +58,9 @@ def get_integer_input(message):
 
 
 # Prompt the user for important information.
-# beginning_number = get_float_input("Enter a number to convert")
-# base_start = get_integer_input("In what base is this number?")
-# base_end = get_integer_input("Which base do you wish to convert to?")
+beginning_number = get_float_input("Enter a number to convert")
+base_start = get_integer_input("In what base is this number?")
+base_end = get_integer_input("Which base do you wish to convert to?")
 # Compute and print the number in the desired base.
-# converted = convert(beginning_number, base_start, base_end)
-converted = convert(17236, 10, 5)
-print("{0} is your number in base {1}".format(converted, 5))
+converted = convert(beginning_number, base_start, base_end)
+print("{0} is your number in base {1}".format(converted, base_end))
