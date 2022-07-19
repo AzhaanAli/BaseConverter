@@ -52,26 +52,26 @@ def convert(num, start_base, end_base):
 
 
 # Prints a message and returns the users reply.
-def get_user_input(message):
+def prompt(message):
     return input(message + ": ")
 
 
 # Prompts the user for various data-types.
-def get_float_input(message):
-    return float(get_user_input(message))
+def prompt_float(message="Enter a decimal"):
+    return float(prompt(message))
 
 
-def get_integer_input(message):
-    return int(get_user_input(message))
+def prompt_integer(message="Enter an integer"):
+    return int(prompt(message))
 
 
 # ------------------------------------------------------- #
 # Method calls.
 
 # Prompt the user for important information.
-beginning_number = get_float_input("Enter a number to convert")
-base_start = get_integer_input("In what base is this number?")
-base_end = get_integer_input("Which base do you wish to convert to?")
+beginning_number = prompt_float("Enter a number to convert")
+base_start = prompt_integer("In what base is this number?")
+base_end = prompt_integer("Which base do you wish to convert to?")
 # Compute and print the number in the desired base.
 converted = convert(beginning_number, base_start, base_end)
 print("{0} is your number in base {1}".format(converted, base_end))
